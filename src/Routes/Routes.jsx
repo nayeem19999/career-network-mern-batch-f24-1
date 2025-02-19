@@ -21,6 +21,7 @@ const Routes = () => {
                 },
                 {
                     path:'/jobs',
+                    loader:()=>fetch('https://next-level-two-ashen.vercel.app/jobs'),
                     element:<AppliedJobs></AppliedJobs>
                 },
                 {

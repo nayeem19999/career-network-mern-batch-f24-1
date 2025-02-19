@@ -1,19 +1,33 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { GiSkills } from "react-icons/gi";
 import { FaLocationDot } from "react-icons/fa6";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { BsCalendar2Date } from "react-icons/bs";
 import { ToastContainer, toast } from 'react-toastify';
+import { getDataFromLocalStorage, setDataIntoLocalStorage } from '../../../../LocalStorage/LocalStorage';
 
 
 const JobDetails = () => {
     const values = useLoaderData()
-    const { image, description, job_title, category_name, companyName, experience, isPaid, skills, location, postDate, salary, recruiterEmail, deadline, duty_hours } = values;
+    // console.log(values)
+    const { _id,image, description, job_title, category_name, companyName, experience, isPaid, skills, location, postDate, salary, recruiterEmail, deadline, duty_hours } = values;
 
-
+    const navigate = useNavigate()
     const handleApply =()=>{
-        toast("Applied Successfully")
+        
+        const data = getDataFromLocalStorage();
+
+        
+        const filterData = data.find(da => da === _id)
+        if(!filterData){
+            setDataIntoLocalStorage(_id)
+            toast.success("Applied Successfully")
+            navigate('/jobs')
+        }
+        else{
+            toast.error('you have already applied this job')
+        }
     }
     return (
         <div className='mt-10 max-w-6xl mx-auto'>

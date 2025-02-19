@@ -18,7 +18,7 @@ const SingleJobs = ({ job }) => {
             </div>
            </div>
            <div className='flex justify-end'>
-           <button className='px-10 py-4 bg-blue-500 text-white font-bold rounded-xl m-4'><Link to={`job/${_id}`}>Details</Link></button>
+           <Link to={`job/${_id}`}><button className='px-10 py-4 bg-blue-500 text-white font-bold rounded-xl m-4'>Details</button></Link>
            </div>
         </div>
     );
